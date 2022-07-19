@@ -1,49 +1,29 @@
-# on: [push, workflow_dispatch]
-# name: Azure ARM
-# jobs:
-#   build-and-deploy:
-#     environment: Azure
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: Log into Azure
-#         uses: azure/login@v1.4.3
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-#       - name: Deploy Bicep file
-#         uses: azure/arm-deploy@main
-#         with:
-#           deploymentName: ${{ github.run_number }}
-#           resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
-#           template: main.bicep
-
-name: Run Azure Login with OpenID Connect
+name: Azure ARM
 on: [push, workflow_dispatch]
 
 permissions:
-      id-token: write
-      contents: read
-      
-jobs: 
+  id-token: write
+  contents: read
+
+jobs:
   build-and-deploy:
     environment: Azure
     runs-on: ubuntu-latest
     steps:
-    - name: 'Az CLI login'
-      uses: azure/login@v1
-      with:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Az CLI login
+        uses: azure/login@v1
+        with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          allow-no-subscriptions: true
-          # subscription-id: 169aa2b8-a099-41ff-b9d6-0447c8a3c047 #${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
-    - name: 'Run Azure CLI commands'
-      run: |
-          az account show
-          az config set extension.use_dynamic_install=yes_without_prompt
-          az account subscription list
-        # az group list
-        # pwd
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Bicep file
+        uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          deploymentName: ${{ github.run_number }}
+          # resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
+          template: main.bicep
