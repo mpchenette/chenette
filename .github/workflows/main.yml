@@ -25,6 +25,6 @@ jobs:
         with:
           scope: subscription
           deploymentName: ${{ github.run_number }}
-          region: westus2
+          region: westus
           # resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
           template: main.bicep
