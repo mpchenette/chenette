@@ -43,6 +43,7 @@ jobs:
     - name: 'Run Azure CLI commands'
       run: |
           az account show
+          az config set extension.use_dynamic_install=yes_without_prompt
           az account subscription list
         # az group list
         # pwd
