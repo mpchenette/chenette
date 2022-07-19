@@ -21,7 +21,7 @@
 #           template: main.bicep
 
 name: Run Azure Login with OpenID Connect
-on: [push]
+on: [push, workflow_dispatch]
 
 permissions:
       id-token: write
