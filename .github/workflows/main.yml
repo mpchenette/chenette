@@ -1,21 +1,46 @@
-on: [push, workflow_dispatch]
-name: Azure ARM
-jobs:
+# on: [push, workflow_dispatch]
+# name: Azure ARM
+# jobs:
+#   build-and-deploy:
+#     environment: Azure
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Log into Azure
+#         uses: azure/login@v1.4.3
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#       - name: Deploy Bicep file
+#         uses: azure/arm-deploy@main
+#         with:
+#           deploymentName: ${{ github.run_number }}
+#           resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
+#           template: main.bicep
+
+name: Run Azure Login with OpenID Connect
+on: [push]
+
+permissions:
+      id-token: write
+      contents: read
+      
+jobs: 
   build-and-deploy:
     environment: Azure
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Log into Azure
-        uses: azure/login@v1.4.3
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy Bicep file
-        uses: azure/arm-deploy@main
-        with:
-          deploymentName: ${{ github.run_number }}
-          resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
-          template: main.bicep
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
+    - name: 'Run Azure CLI commands'
+      run: |
+          az account show
+          az group list
+          pwd
