@@ -25,6 +25,6 @@ jobs:
         with:
           scope: subscription
           deploymentName: ${{ github.run_number }}
-          region: westus # assuming you are defining a region within the bicep template, this region does not matter. It gets overridden
+          region: southcentralus # assuming you are defining a region within the bicep template, this region does not matter. It gets overridden
           # resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
           template: main.bicep

@@ -38,10 +38,10 @@
 
 // =========== main.bicep ===========
 targetScope = 'subscription'
-param location string = 'westus2'
+param location string = deployment().location
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-01-01' = {
-  name: 'rg-contoso2'
+  name: 'rg-contoso24'
   location: location
 }
 
@@ -50,7 +50,7 @@ module stg 'storage.bicep' = {
   name: 'storageDeployment'
   scope: rg // Deployed in the scope of resource group we created above
   params: {
-    location: location
+    location: rg.location
     storageAccountName: 'stcontosomcpusababe'
   }
 }
