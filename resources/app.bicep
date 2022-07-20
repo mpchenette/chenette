@@ -14,8 +14,15 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
     reserved: isLinux
     serverFarmId: planId
     siteConfig: {
+      alwaysOn: true
+      appSettings: [
+        {
+          name: 'DOCKER_REGISTRY_SERVER_URL'
+          value: 'https://mcr.microsoft.com'
+        }
+      ]
       healthCheckPath: '/' // Change?
-      linuxFxVersion: 'DOCKER|https://mcr.microsoft.com/appsvc/staticsite:latest'
+      linuxFxVersion: 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
     }
   }
 }
