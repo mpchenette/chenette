@@ -8,6 +8,16 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   location: location
 }
 
+module cr 'resources/cr.bicep' = {
+  name: 'crDeployment'
+  scope: rg
+  params: {
+    name: 'crchenetteprod001'
+    location: rg.location
+    sku: 'Standard'
+  }
+}
+
 module plan 'resources/plan.bicep' = {
   name: 'planDeployment'
   scope: rg
