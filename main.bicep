@@ -37,7 +37,7 @@ module app 'resources/app.bicep' = {
     location: rg.location
     isLinux: true
     planId: plan.outputs.resourceId
-    clid: '6f8856bb-855f-462b-8c4c-4bfe34cc4d84'
-    clse: 'R2W8Q~BmbNj1G_16jA5zfSwUVXOg7GmC1MtuGb3W'
+    clid: 'crchenetteprod001'
+    clse: 'xaPe8evM1DURYb25lYYrwOy0xOyH1x=J'
   }
 }
