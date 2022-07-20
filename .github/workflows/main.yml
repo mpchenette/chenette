@@ -1,51 +1,51 @@
-# name: Azure ARM
-# on: [push, workflow_dispatch]
+name: Azure ARM
+on: [push, workflow_dispatch]
 
-# #Split up the infra and code deployments in this file. also the actions/checkout isnt needed when using the docker actions
-# # or maybe build and push the image then do bicep? but no we need acr in place to begin with
-# permissions:
-#   id-token: write
-#   contents: read
+#Split up the infra and code deployments in this file. also the actions/checkout isnt needed when using the docker actions
+# or maybe build and push the image then do bicep? but no we need acr in place to begin with
+permissions:
+  id-token: write
+  contents: read
 
-# jobs:
-#   build-and-deploy:
-#     environment: Azure
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+jobs:
+  build-and-deploy:
+    environment: Azure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       - name: Az CLI login
-#         uses: azure/login@v1
-#         with:
-#           client-id: ${{ secrets.AZURE_CLIENT_ID }}
-#           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Az CLI login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-#       - name: Deploy Bicep file
-#         uses: azure/arm-deploy@v1
-#         with:
-#           scope: subscription
-#           deploymentName: ${{ github.run_number }}
-#           region: southcentralus
-#           template: main.bicep
+      - name: Deploy Bicep file
+        uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          deploymentName: ${{ github.run_number }}
+          region: southcentralus
+          template: main.bicep
 
-#       - name: Login to ACR
-#         uses: docker/login-action@v2
-#         with:
-#           registry: crchenetteprod001.azurecr.io
-#           username: ${{ secrets.AZURE_CLIENT_ID }}
-#           password: ${{ secrets.AZURE_CLIENT_SECRET }}
+      - name: Login to ACR
+        uses: docker/login-action@v2
+        with:
+          registry: crchenetteprod001.azurecr.io
+          username: ${{ secrets.AZURE_CLIENT_ID }}
+          password: ${{ secrets.AZURE_CLIENT_SECRET }}
 
-#       - name: Build and push
-#         uses: docker/build-push-action@v3
-#         with:
-#           context: ./App #change?
-#           push: true
-#           tags: crchenetteprod001.azurecr.io/dotnetwebapp:${{ github.sha }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./App #change?
+          push: true
+          tags: crchenetteprod001.azurecr.io/dotnetwebapp:${{ github.sha }}
 
-#       - name: Deploy to web app
-#         uses: azure/webapps-deploy@v2
-#         with:
-#           app-name: app-chenette-prod-scus-001
-#           images: crchenetteprod001.azurecr.io/dotnetwebapp:${{ github.sha }}
+      - name: Deploy to web app
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: app-chenette-prod-scus-001
+          images: crchenetteprod001.azurecr.io/dotnetwebapp:${{ github.sha }}

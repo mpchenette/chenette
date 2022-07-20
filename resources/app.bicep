@@ -4,6 +4,8 @@ param name string
 param location string
 param isLinux bool
 param planId string
+param clid string
+param clse string
 
 resource app 'Microsoft.Web/sites@2021-03-01' = {
   name: name
@@ -22,11 +24,11 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'DOCKER_REGISTRY_SERVER_USERNAME'
-          value: 'https://mcr.microsoft.com'
+          value: clid
         }
         {
           name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
-          value: 'https://mcr.microsoft.com'
+          value: clse
         }
       ]
       healthCheckPath: '/' // Change?
@@ -35,11 +37,3 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
   }
 }
 
-{
-"name": "DOCKER_REGISTRY_SERVER_USERNAME",
-"value": "[parameters('dockerRegistryUsername')]"
-},
-{
-"name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-"value": "[parameters('dockerRegistryPassword')]"
-}
