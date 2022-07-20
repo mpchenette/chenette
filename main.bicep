@@ -14,7 +14,7 @@ module plan 'resources/plan.bicep' = {
   params: {
     name: 'plan-chenette-prod-scus-001'
     location: rg.location
-    tier: 'S1'
+    sku: 'S1'
     isLinux: true
   }
 }

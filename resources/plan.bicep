@@ -2,14 +2,14 @@
 
 param name string
 param location string
-param tier string
+param sku string
 param isLinux bool
 
 resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: name
   location: location
   sku: {
-    tier: tier
+    name: sku
   }
   properties: {
     reserved: isLinux
