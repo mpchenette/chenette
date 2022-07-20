@@ -1,4 +1,4 @@
-// =========== site.bicep ===========
+// =========== app.bicep ===========
 
 param name string
 param location string

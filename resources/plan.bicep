@@ -15,3 +15,5 @@ resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
     reserved: isLinux
   }
 }
+
+output resourceId string = plan.id
