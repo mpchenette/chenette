@@ -20,7 +20,7 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
       appSettings: [
         {
           name: 'DOCKER_REGISTRY_SERVER_URL'
-          value: 'https://mcr.microsoft.com'
+          value: 'https://crchenetteprod001.azurecr.io'
         }
         {
           name: 'DOCKER_REGISTRY_SERVER_USERNAME'
@@ -32,8 +32,7 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
         }
       ]
       healthCheckPath: '/' // Change?
-      linuxFxVersion: 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
+      linuxFxVersion: 'DOCKER|crchenetteprod001.azurecr.io/dotnetwebapp:latest'
     }
   }
 }
-
