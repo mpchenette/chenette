@@ -15,7 +15,7 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
     serverFarmId: planId
     siteConfig: {
       healthCheckPath: '/' // Change?
-      linuxFxVersion: 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
+      linuxFxVersion: 'DOCKER|https://mcr.microsoft.com/appsvc/staticsite:latest'
     }
   }
 }
