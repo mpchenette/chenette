@@ -20,9 +20,26 @@ resource app 'Microsoft.Web/sites@2021-03-01' = {
           name: 'DOCKER_REGISTRY_SERVER_URL'
           value: 'https://mcr.microsoft.com'
         }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
+          value: 'https://mcr.microsoft.com'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
+          value: 'https://mcr.microsoft.com'
+        }
       ]
       healthCheckPath: '/' // Change?
       linuxFxVersion: 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
     }
   }
+}
+
+{
+"name": "DOCKER_REGISTRY_SERVER_USERNAME",
+"value": "[parameters('dockerRegistryUsername')]"
+},
+{
+"name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+"value": "[parameters('dockerRegistryPassword')]"
 }
