@@ -29,6 +29,9 @@ jobs:
           deploymentName: ${{ github.run_number }}
           region: southcentralus
           template: main.bicep
+        env:
+          BICEP_RESOURCE_TYPED_PARAMS_AND_OUTPUTS_EXPERIMENTAL: true
+
 
       - name: Login to ACR
         uses: docker/login-action@v2
