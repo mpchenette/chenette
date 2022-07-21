@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OLrDIloGTNxo3tzP/6SExmR5M/2qrxAr9yD88kL1CLn5v+s89evFbHtr4XcZR2V4L5bkmzQ4V3DPZ7CdLE0zqA==",
+  "dgSpecHash": "mZSdxrdU+WBchl8puzHoM+1+4Xj1hZf9dj5swgO8RsIEejc2nqHuN7TZsjOOtsKzM2AS8WrAsQhmgO6ozxmzaA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mchenette\\github\\chenette\\App\\DotNet.Docker.csproj",
+  "projectFilePath": "C:\\Users\\matth\\github\\chenette\\App\\DotNet.Docker.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
