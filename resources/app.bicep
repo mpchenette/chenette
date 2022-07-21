@@ -4,7 +4,9 @@ param name string
 param location string
 param isLinux bool
 param planId string
+@secure()
 param clid string
+@secure()
 param clse string
 
 resource app 'Microsoft.Web/sites@2021-03-01' = {

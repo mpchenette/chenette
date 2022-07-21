@@ -20,3 +20,6 @@ Good reference links for some of the conventions and best practices used in this
 
 - [OpenID Connect for Github actions in Azure](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure)
 - [Reference for rough workflow structure](https://github.com/marketplace/actions/azure-webapp#sample-workflow-to-build-and-deploy-a-nodejs-app-to-containerized-webapp-using-azure-service-principal)
+
+chenette - property management and private equity?
+shuhnet - website services?

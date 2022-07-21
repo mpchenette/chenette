@@ -14,3 +14,5 @@ resource cr 'Microsoft.ContainerRegistry/registries@2022-02-01-preview' = {
     adminUserEnabled: true
   }
 }
+
+output resource resource = cr

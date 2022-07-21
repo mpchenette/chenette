@@ -18,6 +18,16 @@ module cr 'resources/cr.bicep' = {
   }
 }
 
+module kv 'resources/kv.bicep' = {
+  name: 'kvDeployment'
+  scope: rg
+  params: {
+    name: 'kv-chenette-prod-scus-001'
+    location: rg.location
+    cr: cr.outputs.resource
+  }
+}
+
 module plan 'resources/plan.bicep' = {
   name: 'planDeployment'
   scope: rg
@@ -37,7 +47,7 @@ module app 'resources/app.bicep' = {
     location: rg.location
     isLinux: true
     planId: plan.outputs.resourceId
-    clid: 'crchenetteprod001'
-    clse: 'xaPe8evM1DURYb25lYYrwOy0xOyH1x=J'
+    clid: kv.outputs.resource.getSecret('crUsername')
+    clse: kv.outputs.resource.getSecret('crPassword1')
   }
 }
