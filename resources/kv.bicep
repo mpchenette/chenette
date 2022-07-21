@@ -2,7 +2,7 @@
 
 param name string
 param location string
-param cr resource 'Microsoft.ContainerRegistry/registries@2022-02-01-preview'
+// param cr resource 'Microsoft.ContainerRegistry/registries@2022-02-01-preview'
 
 
 resource kv 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
@@ -37,4 +37,4 @@ resource kv 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-output resource resource = kv
+// output resource resource = kv
